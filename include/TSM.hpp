@@ -1,11 +1,13 @@
 #pragma once
 #include "Routes.hpp"
-#include "MyBitset.hpp"
+#include "Subset.hpp"
 #include <bitset>
+#include <map>
+#include <unordered_map>
 
-using MapRoutes = std::map<Subset,
-                           Route,
-                           compareSubset>;
+using MapRoutes = std::unordered_map<Subset,
+                                     Route,
+                                     SubsetHasher>;
 
 class TSM
 {
