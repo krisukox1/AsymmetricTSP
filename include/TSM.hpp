@@ -10,16 +10,13 @@ using MapRoutes = std::map<Subset,
 class TSM
 {
 public:
-    TSM(std::string filename):
-        graph(filename),
-        numberOfVertices(graph.getVectorSize())
-    {
-    }
+    TSM(std::ifstream& file):
+        graph(file),
+        numberOfVertices(graph.getVectorSize()){}
     TSM(std::size_t vertices):
         numberOfVertices(vertices),
-        graph(vertices)
-    {
-    }
+        graph(vertices){}
+
     Route findShortestRouteHK(Vertex vertex);
     Route findShortestRouteBF(Vertex vertex);
     Graph graph;
@@ -28,6 +25,7 @@ private:
     Vertex startVertex;
     MapRoutes mapRoutes;
     Routes routes;
+
     void addVertexToRoutes();
     Route addLastVertexToRoutes();
     void findAllRoutes(Route);

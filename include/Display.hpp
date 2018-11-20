@@ -1,5 +1,6 @@
-#include "TSM.hpp"
+#pragma once
 #include <memory>
+#include "TSM.hpp"
 class Display
 {
 public:

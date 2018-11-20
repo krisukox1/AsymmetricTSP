@@ -1,13 +1,9 @@
 #include "../include/Graph.hpp"
 #include <fstream>
-#include <iostream>
 #include <stdexcept>
 
-bool Graph::loadFromFile(const std::string& fileName)
+bool Graph::loadFromFile(std::ifstream& file)
 {
-    std::ifstream file(fileName);
-    if(not file.is_open())
-        return 0;
     file >> vectorSize;
 
     structure.reserve(vectorSize);
@@ -28,7 +24,7 @@ bool Graph::loadFromFile(const std::string& fileName)
         }
         structure.push_back(std::move(vecWeight));
     }
-    return 1;
+    return true;
 }
 
 void Graph::display()

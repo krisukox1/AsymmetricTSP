@@ -1,6 +1,6 @@
 #include "../include/Display.hpp"
-#include <cstdio>
 #include <curses.h>
+#include <fstream>
 
 void Display::start()
 {
@@ -54,10 +54,18 @@ void Display::start()
 
 void Display::loadFile()
 {
-    std::string filename;
+    std::string fileName;
     std::cout<<"Podaj nazwe pliku: ";
-    std::cin>>filename;
-    tsm = std::make_unique<TSM>(filename);
+    std::cin>>fileName;
+    std::ifstream file(fileName);
+    if(not file.is_open())
+    {
+        std::cout<<"niepoprawna nazwa pliku"<<std::endl;
+        std::getchar();
+        std::getchar();
+        return;
+    }
+    tsm = std::make_unique<TSM>(file);
 }
 
 void Display::findShortestRouteHK()

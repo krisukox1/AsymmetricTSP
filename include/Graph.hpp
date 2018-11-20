@@ -4,22 +4,22 @@
 #include <iostream>
 
 using Weight = unsigned;
-using Vertex = std::size_t;
+using Vertex = unsigned;
 using VectorSize = std::size_t;
 
 class Graph
 {
 public:
     friend std::ostream& operator<<(std::ostream&, const Graph&);
-    Graph(const std::string& filename)
+    Graph(std::ifstream& file)
     {
-        loadFromFile(filename);
+        loadFromFile(file);
     }
     Graph(std::size_t numberOfVertices)
     {
         generate(numberOfVertices);
     }
-    bool loadFromFile(const std::string&);
+    bool loadFromFile(std::ifstream &);
     void display();
     Weight getWeight(Vertex beginVertex, Vertex endVertex) const;
     VectorSize getVectorSize() const;
